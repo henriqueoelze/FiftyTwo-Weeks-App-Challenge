@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\24629f2a3b3f5c4575eea6cc140721d2229346ad\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_56d907f7917cf0b11cd05d847ebf9ce901dddbc8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\a09b6080ca155936c6af8a43280fc105fc23345b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fa4962ee3845ca779e093f0e8881241bc689ed5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\git\android\Poc-Listas\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9b1ad4edaa6236514e5df866e8f85f7810bb66db">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b573428f34fa20177f1f4f6cda76d1ca1f0fb876\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\11c5b3ca05205d85b2d4664fa99e34fb7800b11e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a2aa1926159ec36c9655ddcf02481669101432b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\8982f17bf965d999794afaea72266c5366d4662d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_46a61fead40cbf612e23187191a9eb76f746d1fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\git\android\Poc-Listas\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3c75d38e48f26ece088959cb12e382e6de2b9443\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\bf991f1f1624df38e4b643171d768c460065c026\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_27deaa248696aa3d2f7c1f28af7d64e2943d829e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\eacbb00079ce7a91acbe37c40e168dba344233f2\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4808183972ab7e15cd921bb48fe83d7209cee77a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\e79e4a8ec3271a4ecc4f525c8d7d83e25ddf9b71\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_beaf9b1ba84051cf69e3199055203df319d608c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\e15ace72678e052a91912cb603c27995fb79f88a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1f9431a7a4908b19fed3ccb8190d754e6f84bdc5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Henrique\.android\build-cache\5d8121049110c212058536fe23e4013c955d1bbb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="D:\git\android\Poc-Listas\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_50931e7bede7a2a3eec662baa0476ec85d533e2c\classes.dex" />
+    </item>
+
+</items>
