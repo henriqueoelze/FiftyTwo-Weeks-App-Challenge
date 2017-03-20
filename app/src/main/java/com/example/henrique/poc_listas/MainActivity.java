@@ -42,24 +42,27 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                DayItem clickedItem = itens.get(position);
-                String message = "Confirma o pagamento de R$" + clickedItem.getValue() + ",00 para o dia " + clickedItem.getDay() + " de " + clickedItem.getMonth() + "?";
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Confirmação")
-                        .setMessage(message)
-                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                view.setBackgroundColor(Color.GREEN);
-                            }
-                        })
-                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                .show();
+                final DayItem clickedItem = itens.get(position);
+                if(!clickedItem.getPaid()) {
+                    String message = "Confirma o pagamento de R$" + clickedItem.getValue() + ",00 para o dia " + clickedItem.getDay() + " de " + clickedItem.getMonth() + "?";
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Confirmação")
+                            .setMessage(message)
+                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    view.setBackgroundColor(Color.GREEN);
+                                    clickedItem.setPaid(Boolean.TRUE);
+                                }
+                            })
+                            .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
             }
         });
     }
