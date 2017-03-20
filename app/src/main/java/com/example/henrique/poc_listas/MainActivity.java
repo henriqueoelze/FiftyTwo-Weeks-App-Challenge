@@ -1,10 +1,13 @@
 package com.example.henrique.poc_listas;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupList();
+        List<DayItem> itens = setupList();
+        configureNotification(itens);
     }
 
-    private void setupList() {
+    private List<DayItem> setupList() {
         ListView list = (ListView) this.findViewById(R.id.dayList);
         final List<DayItem> itens = getItens();
 
@@ -65,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        return itens;
     }
 
     private List<DayItem> getItens() {
@@ -105,5 +111,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return instance;
+    }
+
+    private void configureNotification(List<DayItem> itens) {
+        android.support.v4.app.NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext())
+                .setSmallIcon(R.drawable.dollar)
+                .setContentTitle("Esta na hora de poupar!")
+                .setContentText("Chegou o momento de depositar na sua caixinha. Clique para conferir!")
+                .setVibrate(new long[]{1, 2})
+                .setWhen(System.currentTimeMillis());
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification.build());
     }
 }
