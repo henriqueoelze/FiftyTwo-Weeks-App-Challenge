@@ -1,14 +1,13 @@
 package com.example.henrique.poc_listas;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.henrique.poc_listas.adapter.DayListAdapter;
 import com.example.henrique.poc_listas.domain.DayItem;
@@ -16,13 +15,11 @@ import com.example.henrique.poc_listas.domain.DayItem;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Calendar today;
+    public static final int START_INDEX_OF_LIST = 1;
     private int positionToStart;
 
     @Override
@@ -30,18 +27,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        today = Calendar.getInstance();
-        ListView list = (ListView) this.findViewById(R.id.dayList);
+        setupList();
+    }
 
-        DayListAdapter adapter = new DayListAdapter(this, R.layout.day_list, getItens());
+    private void setupList() {
+        ListView list = (ListView) this.findViewById(R.id.dayList);
+        final List<DayItem> itens = getItens();
+
+        DayListAdapter adapter = new DayListAdapter(this, R.layout.day_list, itens);
         list.setAdapter(adapter);
-        list.setSelection(positionToStart - 1);
+
+        list.setSelection(positionToStart - START_INDEX_OF_LIST);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(Color.GREEN);
-                Toast.makeText(getApplicationContext(), "Teste", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                DayItem clickedItem = itens.get(position);
+                String message = "Confirma o pagamento de R$" + clickedItem.getValue() + ",00 para o dia " + clickedItem.getDay() + " de " + clickedItem.getMonth() + "?";
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Confirmação")
+                        .setMessage(message)
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                view.setBackgroundColor(Color.GREEN);
+                            }
+                        })
+                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                .show();
             }
         });
     }
@@ -50,23 +68,20 @@ public class MainActivity extends AppCompatActivity {
         ArrayList days = new ArrayList<DayItem>();
 
         Calendar calendar = getFirstSundayOfYear();
+        Calendar today = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int iteration = 1;
 
         boolean searchForDayToStart = true;
         while(year == calendar.get(Calendar.YEAR)) {
-
-            if(searchForDayToStart && calendar.after(today)) {
+            if(searchForDayToStart && (calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) || calendar.after(today))) {
                 positionToStart = iteration;
                 searchForDayToStart = false;
             }
 
-            int dayVaue = calendar.get(Calendar.DAY_OF_MONTH);
-            int monthValue = calendar.get(Calendar.MONTH);
-
             DayItem day = new DayItem(
                     Integer.toString(iteration),
-                    Integer.toString(dayVaue),
+                    Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)),
                     calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH),
                     new BigDecimal(1 * iteration));
             days.add(day);
