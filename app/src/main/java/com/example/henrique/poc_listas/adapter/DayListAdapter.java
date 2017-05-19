@@ -37,15 +37,15 @@ public class DayListAdapter extends ArrayAdapter {
 
         DayItem dayItem = values.get(position);
 
-        TextView txtIteration= (TextView) convertView.findViewById(R.id.txtIteration);
         TextView txtDay = (TextView) convertView.findViewById(R.id.txtDay);
         TextView txtMonth = (TextView) convertView.findViewById(R.id.txtMonth);
         TextView txtValue = (TextView) convertView.findViewById(R.id.txtValue);
 
-        txtIteration.setText(dayItem.getIteration().toString());
-        txtDay.setText(dayItem.getDay());
+        String dayNumber = Integer.parseInt(dayItem.getDay()) < 10 ? "0" + dayItem.getDay() : dayItem.getDay();
+        txtDay.setText(dayNumber);
         txtMonth.setText(dayItem.getMonth());
-        txtValue.setText("R$" + dayItem.getValue().toString() + ",00");
+        String valueText = "R$" + (dayItem.getValue().doubleValue() < 10 ? "0" + dayItem.getValue().toString() : dayItem.getValue().toString()) + ",00";
+        txtValue.setText(valueText);
 
         if(dayItem.getPaid()) {
             convertView.setBackgroundColor(getContext().getResources().getColor(R.color.disabledBgColor));
