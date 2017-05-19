@@ -47,6 +47,10 @@ public class DayListAdapter extends ArrayAdapter {
         txtMonth.setText(dayItem.getMonth());
         txtValue.setText("R$" + dayItem.getValue().toString() + ",00");
 
+        if(dayItem.getPaid()) {
+            convertView.setBackgroundColor(getContext().getResources().getColor(R.color.disabledBgColor));
+        }
+
         return convertView;
     }
 }

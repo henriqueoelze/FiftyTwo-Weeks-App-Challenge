@@ -1,6 +1,7 @@
 package com.example.henrique.poc_listas;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,11 +21,13 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     public static final int START_INDEX_OF_LIST = 1;
     private int positionToStart;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferences = getPreferences(CONTEXT_RESTRICTED);
 
         List<DayItem> items = setupList();
         //configureNotification(items);
@@ -51,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    view.setBackgroundColor(getResources().getColor(R.color.disabledBgColor));
-                                    clickedItem.setPaid(Boolean.TRUE);
+                                    payItem(view, clickedItem);
                                 }
                             })
                             .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -69,8 +71,18 @@ public class MainActivity extends AppCompatActivity {
         return itens;
     }
 
+    private void payItem(View view, DayItem clickedItem) {
+        view.setBackgroundColor(getResources().getColor(R.color.disabledBgColor));
+        clickedItem.setPaid(Boolean.TRUE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(clickedItem.getIteration(), Boolean.TRUE);
+        editor.commit();
+    }
+
     private List<DayItem> getItems() {
         ArrayList<DayItem> days = new ArrayList<DayItem>();
+        final Locale myLocale = new Locale("pt", "BR");
 
         Calendar calendar = getFirstSundayOfYear();
         Calendar today = Calendar.getInstance();
@@ -84,11 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 searchForDayToStart = false;
             }
 
+            String iterationString = Integer.toString(iteration);
             DayItem day = new DayItem(
-                    Integer.toString(iteration),
+                    iterationString,
                     Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)),
-                    calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH),
-                    new BigDecimal(iteration));
+                    calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, myLocale),
+                    new BigDecimal(iteration),
+                    preferences.getBoolean(iterationString, false));
             days.add(day);
 
             calendar.add(Calendar.WEEK_OF_YEAR, 1);
