@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final DayItem clickedItem = itens.get(position);
                 if(!clickedItem.getPaid()) {
-                    String message = getString(R.string.confirmMessage, clickedItem.getValue() ,clickedItem.getDay(), clickedItem.getMonth());
+                    String message = getString(R.string.confirmMessage, clickedItem.getValue().toString() ,clickedItem.getDay().toString(), clickedItem.getMonth().toString());
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle(getString(R.string.confirmTitle))
                             .setMessage(message)
                             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                                    view.setBackgroundColor(getResources().getColor(R.color.disabledBgColor));
                                     clickedItem.setPaid(Boolean.TRUE);
                                 }
                             })

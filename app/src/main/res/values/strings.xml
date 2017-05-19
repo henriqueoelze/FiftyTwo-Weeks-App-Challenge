@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Poc-Listas</string>
+    <string name="app_name">Desafio das 52 Semanas</string>
     <string name="no">Não</string>
     <string name="yes">Sim</string>
     <string name="confirmTitle">Confirmação</string>
-    <string name="confirmMessage">Confirma o pagamento de R$%1$,00 para o dia %2$ de %3$?</string>
+    <string name="confirmMessage">Confirma o pagamento de R$%1$s,00 para o dia %2$s de %3$s?</string>
 </resources>
