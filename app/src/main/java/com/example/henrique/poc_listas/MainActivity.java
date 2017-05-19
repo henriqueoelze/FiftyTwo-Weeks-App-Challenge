@@ -1,13 +1,9 @@
 package com.example.henrique.poc_listas;
 
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<DayItem> itens = setupList();
-        configureNotification(itens);
+        List<DayItem> items = setupList();
+        //configureNotification(items);
     }
 
     private List<DayItem> setupList() {
         ListView list = (ListView) this.findViewById(R.id.dayList);
-        final List<DayItem> itens = getItens();
+        final List<DayItem> itens = getItems();
 
         DayListAdapter adapter = new DayListAdapter(this, R.layout.day_list, itens);
         list.setAdapter(adapter);
@@ -48,18 +44,18 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final DayItem clickedItem = itens.get(position);
                 if(!clickedItem.getPaid()) {
-                    String message = "Confirma o pagamento de R$" + clickedItem.getValue() + ",00 para o dia " + clickedItem.getDay() + " de " + clickedItem.getMonth() + "?";
+                    String message = getString(R.string.confirmMessage, clickedItem.getValue() ,clickedItem.getDay(), clickedItem.getMonth());
                     new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("Confirmação")
+                            .setTitle(getString(R.string.confirmTitle))
                             .setMessage(message)
-                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    view.setBackgroundColor(Color.GREEN);
+                                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                                     clickedItem.setPaid(Boolean.TRUE);
                                 }
                             })
-                            .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -73,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         return itens;
     }
 
-    private List<DayItem> getItens() {
-        ArrayList days = new ArrayList<DayItem>();
+    private List<DayItem> getItems() {
+        ArrayList<DayItem> days = new ArrayList<DayItem>();
 
         Calendar calendar = getFirstSundayOfYear();
         Calendar today = Calendar.getInstance();
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     Integer.toString(iteration),
                     Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)),
                     calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH),
-                    new BigDecimal(1 * iteration));
+                    new BigDecimal(iteration));
             days.add(day);
 
             calendar.add(Calendar.WEEK_OF_YEAR, 1);
@@ -113,15 +109,15 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
 
-    private void configureNotification(List<DayItem> itens) {
-        android.support.v4.app.NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(R.drawable.dollar)
-                .setContentTitle("Esta na hora de poupar!")
-                .setContentText("Chegou o momento de depositar na sua caixinha. Clique para conferir!")
-                .setVibrate(new long[]{1, 2})
-                .setWhen(System.currentTimeMillis());
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification.build());
-    }
+//    private void configureNotification(List<DayItem> itens) {
+//        android.support.v4.app.NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext())
+//                .setSmallIcon(R.drawable.dollar)
+//                .setContentTitle("Esta na hora de poupar!")
+//                .setContentText("Chegou o momento de depositar na sua caixinha. Clique para conferir!")
+//                .setVibrate(new long[]{1, 2})
+//                .setWhen(System.currentTimeMillis());
+//
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(0, notification.build());
+//    }
 }

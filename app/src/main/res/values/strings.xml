@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Poc-Listas</string>
+    <string name="no">Não</string>
+    <string name="yes">Sim</string>
+    <string name="confirmTitle">Confirmação</string>
+    <string name="confirmMessage">Confirma o pagamento de R$%1$,00 para o dia %2$ de %3$?</string>
 </resources>
