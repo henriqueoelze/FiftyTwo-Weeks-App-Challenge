@@ -5,4 +5,5 @@
     <color name="colorAccent">#00C853</color>
     <color name="disabledBgColor">#E0E0E0</color>
     <color name="disabledTxtColor">#E0E0E0</color>
+    <color name="selectedBgColor">#B9F6CA</color>
 </resources>

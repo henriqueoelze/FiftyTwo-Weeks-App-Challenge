@@ -4,4 +4,8 @@
     <string name="yes">Sim</string>
     <string name="confirmTitle">Confirmação</string>
     <string name="confirmMessage">Confirma o pagamento de R$%1$s,00 para o dia %2$s de %3$s?</string>
+    <string name="confirmMessageMultipleItens">Confirma o pagamento de R$%1$s,00, abatendo todos os dias selecionados?</string>
+    <string name="pagar">Pagar</string>
+    <string name="contextMenuTitle">Total: R$%1$s,00</string>
+    <string name="contextMenuSubTitle">Soma selecionada</string>
 </resources>

@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.example.henrique.poc_listas.R;
 import com.example.henrique.poc_listas.domain.DayItem;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Henrique on 16/03/2017.
@@ -23,6 +25,7 @@ public class DayListAdapter extends ArrayAdapter {
 
     private Context context;
     private List<DayItem> values;
+    private Map<Integer, Boolean> selectedItems = new HashMap<Integer, Boolean>();
 
     public DayListAdapter(@NonNull Context context, @LayoutRes int resource, List values) {
         super(context, resource, values);
@@ -49,8 +52,17 @@ public class DayListAdapter extends ArrayAdapter {
 
         if(dayItem.getPaid()) {
             convertView.setBackgroundColor(getContext().getResources().getColor(R.color.disabledBgColor));
+        } else if (selectedItems.get(position) != null && selectedItems.get(position) == Boolean.TRUE) {
+            convertView.setBackgroundColor(getContext().getResources().getColor(R.color.selectedBgColor));
+        } else {
+            convertView.setBackgroundColor(getContext().getResources().getColor(android.R.color.transparent));
         }
 
         return convertView;
+    }
+
+    public void changeItemState(Integer position, Boolean value) {
+        selectedItems.put(position, value);
+        this.notifyDataSetChanged();
     }
 }
