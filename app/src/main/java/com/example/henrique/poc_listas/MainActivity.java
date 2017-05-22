@@ -1,6 +1,7 @@
 package com.example.henrique.poc_listas;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -230,7 +231,50 @@ public class MainActivity extends AppCompatActivity {
                     .reduce(BigDecimal.ZERO, (v1, v2) -> v1.add(v2));
     }
 
-//    private void configureNotification(List<DayItem> itens) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.popmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.btnLimparDados:
+                String message = getString(R.string.msgConfirmaLimparDados);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(getString(R.string.confirmTitle))
+                        .setMessage(message)
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.clear();
+                                editor.commit();
+                                restartApp();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void restartApp() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+    //    private void configureNotification(List<DayItem> itens) {
 //        android.support.v4.app.NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext())
 //                .setSmallIcon(R.drawable.dollar)
 //                .setContentTitle("Esta na hora de poupar!")
