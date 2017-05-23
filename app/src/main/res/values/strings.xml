@@ -10,4 +10,5 @@
     <string name="contextMenuSubTitle">Soma selecionada</string>
     <string name="limparDados">Limpar Dados</string>
     <string name="msgConfirmaLimparDados">Tem certeza que deseja limpar todos os dados salvos?</string>
+    <string name="notificationTitle">Hora de Poupar</string>
 </resources>

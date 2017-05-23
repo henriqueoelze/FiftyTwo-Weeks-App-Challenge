@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.henrique.poc_listas.MainActivity">
+    tools:context="com.example.henrique.fifty_two_weeks_challenge.MainActivity">
 
     <ListView
         android:id="@+id/dayList"
