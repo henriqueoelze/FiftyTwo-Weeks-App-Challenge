@@ -11,4 +11,6 @@
     <string name="limparDados">Limpar Dados</string>
     <string name="msgConfirmaLimparDados">Tem certeza que deseja limpar todos os dados salvos?</string>
     <string name="notificationTitle">Hora de Poupar</string>
+    <string name="startValueQuestion">Quanto desejar poupar por semana?</string>
+    <string name="pleaseSelectValue">Por favor informe quanto deseja poupar por semana</string>
 </resources>
