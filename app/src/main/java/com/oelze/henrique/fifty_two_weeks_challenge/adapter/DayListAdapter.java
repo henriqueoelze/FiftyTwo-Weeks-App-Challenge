@@ -1,4 +1,4 @@
-package com.example.henrique.fifty_two_weeks_challenge.adapter;
+package com.oelze.henrique.fifty_two_weeks_challenge.adapter;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.henrique.fifty_two_weeks_challenge.R;
-import com.example.henrique.fifty_two_weeks_challenge.domain.DayItem;
+import com.oelze.henrique.fifty_two_weeks_challenge.R;
+import com.oelze.henrique.fifty_two_weeks_challenge.domain.DayItem;
 
 import java.util.HashMap;
 import java.util.List;

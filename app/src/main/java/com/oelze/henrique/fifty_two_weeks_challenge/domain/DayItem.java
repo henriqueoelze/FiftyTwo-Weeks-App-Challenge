@@ -1,4 +1,4 @@
-package com.example.henrique.fifty_two_weeks_challenge.domain;
+package com.oelze.henrique.fifty_two_weeks_challenge.domain;
 
 import java.math.BigDecimal;
 

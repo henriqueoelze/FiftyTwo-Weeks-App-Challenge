@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Desafio das 52 Semanas</string>
+    <string name="shared_pref_name">DESAFIO_52_SEMANAS_OELZE</string>
     <string name="no">Não</string>
     <string name="yes">Sim</string>
     <string name="confirmTitle">Confirmação</string>
@@ -11,6 +12,7 @@
     <string name="limparDados">Limpar Dados</string>
     <string name="msgConfirmaLimparDados">Tem certeza que deseja limpar todos os dados salvos?</string>
     <string name="notificationTitle">Hora de Poupar</string>
-    <string name="startValueQuestion">Quanto desejar poupar por semana?</string>
     <string name="pleaseSelectValue">Por favor informe quanto deseja poupar por semana</string>
+    <string name="selectDay">Que dia da semana deseja poupar?</string>
+    <string name="selectValue">Quanto deseja poupar por semana?</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.henrique.fifty_two_weeks_challenge;
+package com.oelze.henrique.fifty_two_weeks_challenge;
 
 import org.junit.Test;
 

@@ -1,5 +1,6 @@
-package com.example.henrique.fifty_two_weeks_challenge;
+package com.oelze.henrique.fifty_two_weeks_challenge;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,8 +16,8 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.henrique.fifty_two_weeks_challenge.adapter.DayListAdapter;
-import com.example.henrique.fifty_two_weeks_challenge.domain.DayItem;
+import com.oelze.henrique.fifty_two_weeks_challenge.adapter.DayListAdapter;
+import com.oelze.henrique.fifty_two_weeks_challenge.domain.DayItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ import java.util.Locale;
 
 public class ChallengeActivity extends AppCompatActivity {
     public static final int START_INDEX_OF_LIST = 1;
-    private static final String ITERATION_VALUE_KEY = "ITERATION_VALUE";
 
     private int positionToStart;
     private SharedPreferences preferences;
@@ -34,17 +34,23 @@ public class ChallengeActivity extends AppCompatActivity {
     private List<DayItem> selectedItems;
     private DayListAdapter adapter;
 
-    private boolean teste = true;
+    @Override
+    public void onBackPressed() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_challenge);
         super.onCreate(savedInstanceState);
         initVariables();
     }
 
     private void initVariables() {
         selectedItems = new ArrayList();
-        preferences = getPreferences(CONTEXT_RESTRICTED);
+        preferences = getApplicationContext().getSharedPreferences(
+                getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+        allItems = setupList();
     }
 
     private List<DayItem> setupList() {
@@ -66,7 +72,6 @@ public class ChallengeActivity extends AppCompatActivity {
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
                 DayItem selectedItem = allItems.get(position);
 
-                //TODO: Workaround to close menu with only paid itens;
                 if(selectedItem.getPaid() && selectedItems.isEmpty()) {
                     mode.finish();
                 } else {
@@ -173,9 +178,10 @@ public class ChallengeActivity extends AppCompatActivity {
         ArrayList<DayItem> days = new ArrayList<DayItem>();
         final Locale myLocale = new Locale("pt", "BR");
 
-        Calendar calendar = getFirstSundayOfYear();
+        Calendar calendar = getFirstDayOfYear();
         Calendar today = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
+        float iterationValue = preferences.getFloat(getResources().getString(R.string.ITERATION_VALUE), 1);
         int iteration = 1;
 
         boolean searchForDayToStart = true;
@@ -190,7 +196,7 @@ public class ChallengeActivity extends AppCompatActivity {
                     iterationString,
                     Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)),
                     calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, myLocale),
-                    new BigDecimal(iteration),
+                    new BigDecimal(iterationValue * iteration),
                     preferences.getBoolean(iterationString, false));
             days.add(day);
 
@@ -201,11 +207,12 @@ public class ChallengeActivity extends AppCompatActivity {
         return  days;
     }
 
-    private Calendar getFirstSundayOfYear() {
+    private Calendar getFirstDayOfYear() {
         Calendar instance = Calendar.getInstance();
         instance.set(Calendar.DAY_OF_YEAR, 1);
 
-        while(instance.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+        Long dayToPay = preferences.getLong(getResources().getString(R.string.WEEK_DAY), 1);
+        while((int) instance.get(Calendar.DAY_OF_WEEK) != dayToPay.intValue()) {
             instance.add(Calendar.DAY_OF_WEEK, 1);
         }
 
@@ -281,6 +288,7 @@ public class ChallengeActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
 
-        startActivity(new Intent(ChallengeActivity.this, ChallengeActivity.class));
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 }
