@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.example.henrique.fifty_two_weeks_challenge"
+        applicationId "com.oelze.henrique.fifty_two_weeks_challenge"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
